@@ -1,0 +1,15 @@
+.link {
+    text-decoration: none;
+    display: block;
+    color: black;
+}
+
+.sidebar{
+    background-color: #D3D3D3;
+}
+
+
+.sidebar-dark{
+    background-color: inherit;
+    color: #9e9e9e;
+}

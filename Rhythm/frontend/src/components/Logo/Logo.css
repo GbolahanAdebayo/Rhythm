@@ -1,0 +1,16 @@
+.logo {
+  
+    width: 155px;
+    display: inline-block;
+  }
+  
+  
+  .logo img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .brand{
+    display:inline-block;
+  }
+  /*# sourceMappingURL=Logo.css.map */
