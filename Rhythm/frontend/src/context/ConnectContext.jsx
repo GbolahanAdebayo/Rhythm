@@ -1,19 +1,48 @@
 import React, { useEffect, useState } from "react";
-import { ethers } from "ethers";
+import Web3 from "web3";
+import Web3Modal from "web3modal";
+
+
+//import { ethers } from "ethers";
 
 import { contractABI, contractAddress } from "../components/utilities/constants";
 
 export const ConnectContext = React.createContext();
 
-const { ethereum } = window;
+//const { ethereum } = window;
 
-const createEthereumContract = () => {
-  const provider = new ethers.providers.Web3Provider(ethereum);
-  const signer = provider.getSigner();
-  const nestdriveContract = new ethers.Contract(contractAddress, contractABI, signer);
- 
-  return nestdriveContract;
+const providerOptions = {
+  walletlink: {
+    package: CoinbaseWalletSDK, //Required
+    options: {
+      appName: "Rhythm Protocol", //Required
+      infuraId: "INFURA_ID",
+    },
+  },
+
+  walletlink: {
+    package: Metamask,
+  }
 };
+
+const web3Modal = new Web3Modal ({
+  network: "localhost:8080", //optional
+  cacheProvider: true, //optional
+  providerOptions, //required
+});
+
+const provider = await web3Modal.connect();
+const web3 = new Web3(provider);
+
+ const createEthereumContract = () => {
+  const provider = await web3Modal.connect(); //new ethers.providers.Web3Provider(ethereum);
+  const signer = provider.getSigner();
+  const rhythmContract = new ethers.Contract(contractAddress, contractABI, signer);
+ 
+  return rhythmContract;
+};
+
+*/
 
 const fetchPublic = async() => {
   const contract = createEthereumContract();
